@@ -15,3 +15,14 @@ The final step is to run neovim and execute the following command in normal mode
 ```
 :PlugUpdate
 ```
+
+## Manual operations
+
+### Fuzzy finder deps
+
+FZF plugin require the following package to work
+```
+sudo apt install fzf ripgrep universal-ctags silversearcher-ag fd-find
+```
+
+References: `https://www.chrisatmachine.com/Neovim/08-fzf/` or `https://github.com/junegunn/fzf`

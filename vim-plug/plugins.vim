@@ -28,4 +28,10 @@ call plug#begin('$HOME/.config/nvim/autoload/plugged')
   " vim-visual-multi
   Plug 'mg979/vim-visual-multi'
 
+  " vim-which-key
+  Plug 'liuchengxu/vim-which-key'
+
+  " nerdcommenter
+  Plug 'scrooloose/nerdcommenter'
+
 call plug#end()

@@ -7,3 +7,5 @@ source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/fzf.vim
 source $HOME/.config/nvim/plug-config/startify-screen.vim
 source $HOME/.config/nvim/plug-config/vim-visual-multi.vim
+source $HOME/.config/nvim/plug-config/which-key.vim
+source $HOME/.config/nvim/plug-config/nerdcommenter.vim
