@@ -9,3 +9,7 @@ source $HOME/.config/nvim/plug-config/startify-screen.vim
 source $HOME/.config/nvim/plug-config/vim-visual-multi.vim
 source $HOME/.config/nvim/plug-config/which-key.vim
 source $HOME/.config/nvim/plug-config/nerdcommenter.vim
+source $HOME/.config/nvim/plug-config/lsp-config.vim
+source $HOME/.config/nvim/plug-config/nvim-cmp.vim
+
+luafile $HOME/.config/nvim/plug-config/lsp-config-languages.lua

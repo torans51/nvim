@@ -12,9 +12,6 @@ call plug#begin('$HOME/.config/nvim/autoload/plugged')
   " Nord theme
   Plug 'arcticicestudio/nord-vim'
 
-  " COC stable version
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
   " vim-airline
   Plug 'vim-airline/vim-airline'
 
@@ -33,5 +30,13 @@ call plug#begin('$HOME/.config/nvim/autoload/plugged')
 
   " nerdcommenter
   Plug 'scrooloose/nerdcommenter'
+
+  " lspconfig
+  Plug 'neovim/nvim-lspconfig'
+  "
+  " nvim-cmp for autocompletion
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/nvim-cmp'
 
 call plug#end()
