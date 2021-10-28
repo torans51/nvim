@@ -15,10 +15,6 @@ call plug#begin('$HOME/.config/nvim/autoload/plugged')
   " vim-airline
   Plug 'vim-airline/vim-airline'
 
-  " FZF
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
-
   " cim-startify
   Plug 'mhinz/vim-startify'
 
@@ -38,5 +34,12 @@ call plug#begin('$HOME/.config/nvim/autoload/plugged')
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/nvim-cmp'
+
+  " nvim treesitter for syntax highligth
+  Plug 'nvim-treesitter/nvim-treesitter'
+
+  " nvim telescope plugins
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
