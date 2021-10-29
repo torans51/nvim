@@ -4,4 +4,5 @@ command Folders NERDTreeToggle
 nnoremap <C-e> :NERDTreeToggle<CR>
 
 let NERDTreeShowHidden=1
+let NERDTreeWinPos = "right"
 
