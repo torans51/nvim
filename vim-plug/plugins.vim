@@ -1,3 +1,10 @@
+" auto-install vim-plug
+if empty(glob('$HOME/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  "autocmd VimEnter * PlugInstall
+endif
+
 call plug#begin('$HOME/.config/nvim/autoload/plugged')
 
   " Better syntax support
@@ -42,4 +49,8 @@ call plug#begin('$HOME/.config/nvim/autoload/plugged')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
 
+  " vim-gitgutter for git integration
+  Plug 'airblade/vim-gitgutter'
+
 call plug#end()
+
