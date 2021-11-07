@@ -1,19 +1,29 @@
-local Plug = vim.fn['plug#']
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+return require('packer').startup(function(use)
 
-Plug('scrooloose/NERDTree')
-Plug('scrooloose/nerdcommenter')
-Plug('jiangmiao/auto-pairs')
-Plug('neovim/nvim-lspconfig')
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = 'TSUpdate'})
-Plug('hrsh7th/cmp-nvim-lsp')
-Plug('hrsh7th/cmp-buffer')
-Plug('hrsh7th/nvim-cmp')
-Plug('nvim-lua/plenary.nvim')
-Plug('nvim-telescope/telescope.nvim')
-Plug('arcticicestudio/nord-vim')
-Plug('vim-airline/vim-airline')
-Plug('airblade/vim-gitgutter')
+  use 'wbthomason/packer.nvim'
 
-vim.call('plug#end')
+  use 'scrooloose/NERDTree'
+  use 'scrooloose/nerdcommenter'
+  use 'jiangmiao/auto-pairs'
+  use 'neovim/nvim-lspconfig'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/nvim-cmp'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-telescope/telescope.nvim'
+  use 'arcticicestudio/nord-vim'
+  use 'vim-airline/vim-airline'
+  use 'airblade/vim-gitgutter'
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
+
