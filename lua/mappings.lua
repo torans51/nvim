@@ -96,3 +96,16 @@ map('n', '<leader>fg', ':Telescope live_grep<CR>', default_opts)
 map('n', '<leader>fb', ':Telescope buffers<CR>', default_opts)
 map('n', '<leader>fh', ':Telescope help_tags<CR>', default_opts)
 
+--
+--Vim Startify
+--
+vim.g.startify_session_dir = '$HOME/.config/nvim/sessions'
+vim.g.startify_custom_header = {
+  'Torans51',
+}
+vim.g.startify_lists = {
+  {type = 'files', header = {'Files'}},
+  {type = 'dir', header = {'Folders'}},
+  {type = 'sessions', header = {'Sessions'}},
+}
+

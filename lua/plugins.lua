@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
   use 'arcticicestudio/nord-vim'
   use 'vim-airline/vim-airline'
   use 'airblade/vim-gitgutter'
+  use 'mhinz/vim-startify'
 
   if packer_bootstrap then
     require('packer').sync()
