@@ -54,7 +54,7 @@ require('lspconfig').elixirls.setup{
   cmd = { "/home/torans51/.cache/nvim/lspconfig/language_server.sh" };
   dialyzerEnabled = false;
 }
-require('lspconfig').rust_analyzer.setup{}
+require('lspconfig').rust_analyzer.setup{} -- require a symlink to rust-analyzer with name 'ra_lsp_server' in PATH
 
 --
 -- Nvim cmp

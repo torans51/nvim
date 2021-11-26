@@ -4,6 +4,8 @@ vim.cmd [[
   filetype plugin on
 ]]
 
+vim.g.mapleader = ',' -- Remap leader key from '\' to ','
+
 vim.opt.hidden = true -- Required to keep multiple buffers
 vim.opt.encoding = 'utf-8' -- The encoding displayed
 vim.opt.fileencoding = 'utf-8' -- Teh encoding written to file
