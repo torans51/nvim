@@ -9,7 +9,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'scrooloose/NERDTree'
-  use 'scrooloose/nerdcommenter'
+  use 'numToStr/Comment.nvim'
   use 'jiangmiao/auto-pairs'
   use 'neovim/nvim-lspconfig'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}

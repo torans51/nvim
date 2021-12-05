@@ -35,9 +35,9 @@ vim.g.NERDTreeShowHidden = 1
 vim.g.NERDTreeWinPos = 'right'
 
 --
--- NERDCommenter
+-- Comment.nvim
 --
-vim.g.NERDSpaceDelims = 1
+require('Comment').setup{}
 
 --
 -- LSP config
