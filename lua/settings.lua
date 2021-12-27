@@ -1,36 +1,36 @@
-vim.cmd [[
+local g = vim.g
+local cmd = vim.cmd
+
+cmd [[
   syntax enable
   filetype on
   filetype plugin on
 ]]
 
-vim.g.mapleader = ',' -- Remap leader key from '\' to ','
+local options = {
+  hidden = true,                           -- required to keep multiple buffers
+  encoding = 'utf-8',                      -- the encoding displayed
+  fileencoding = "utf-8",                  -- the encoding written to a file
+  clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
+  mouse = "a",                             -- allow the mouse to be used in neovim
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  timeoutlen = 400,                        -- time to wait for a mapped sequence to complete (in milliseconds)
+  updatetime = 300,                        -- faster completion (4000ms default)
+  showtabline = 2,                         -- always show tabs
+  hlsearch = true,                         -- highlight all matches on previous search pattern
+  ignorecase = true,                       -- ignore case in search patterns
+  smartcase = true,                        -- smart case
+  smartindent = true,                      -- make indenting smarter again
+  splitbelow = true,                       -- force all horizontal splits to go below current window
+  splitright = true,                       -- force all vertical splits to go to the right of current window
+  expandtab = true,                        -- convert tabs to spaces
+  shiftwidth = 2,                          -- the number of spaces inserted for each indentation
+  tabstop = 2,                             -- insert 2 spaces for a tab
+  cursorline = true,                       -- highlight the current line
+  number = true,                           -- set numbered lines
+  relativenumber = true,                   -- set relative numbered lines
+}
 
-vim.opt.hidden = true -- Required to keep multiple buffers
-vim.opt.encoding = 'utf-8' -- The encoding displayed
-vim.opt.fileencoding = 'utf-8' -- Teh encoding written to file
-vim.opt.ruler = true -- Show the cursor position all the time
-vim.opt.cmdheight = 1 -- More space for displaying messages
-vim.opt.mouse = 'a' -- Enable your mouse
-vim.opt.splitbelow = true -- Horizontal splits will automatically be below
-vim.opt.splitright = true -- Vertical splits will automatically be to the right
---vim.opt.t_Co = 256 -- Support 256 colors
-vim.opt.conceallevel = 0 -- So that I can see `` in markdown files
-vim.opt.tabstop = 2 -- Insert 2 spaces for a tab
-vim.opt.shiftwidth = 2 -- Change the number of space characters inserted for identification
-vim.opt.smarttab = true -- Makes tabbing smarter will realize you have 2 vs 4
-vim.opt.expandtab = true -- Converts tabs to spaces
-vim.opt.smartindent = true -- Makes indenting smart
-vim.opt.autoindent = true -- Good auto indent
-vim.opt.laststatus = 0 -- Always display the status line
-vim.opt.number = true -- Display current line number
-vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.cursorline = true -- Enable highlighting of the current line
-vim.opt.showtabline = 2 -- Always show tabs
-vim.opt.backup = false -- Do I need this?
-vim.opt.writebackup = false -- Do I need this?
-vim.opt.updatetime = 300 -- Faster completion
-vim.opt.timeoutlen = 500 -- By default timeoutlen is 1000 ms
-vim.opt.clipboard = 'unnamedplus' -- Copy/Paste between vim and everything else
-
-vim.cmd [[ colorscheme nord ]]
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
