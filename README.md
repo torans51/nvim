@@ -3,6 +3,11 @@ This repo contains my nvim configuration.
 
 ## Setup
 
+Check if your system has `gcc` and `g++` installed otherwise
+```sh
+$ sudo apt install gcc g++
+```
+
 Install one particular `nerd-font` and use it in your environment.
 
 In order to do that there are many options but you can follow these steps:
