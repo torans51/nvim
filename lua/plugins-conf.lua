@@ -119,6 +119,27 @@ local function gitsigns_setup()
 end
 gitsigns_setup()
 
+-- Nvim tree
+local function nvim_tree_setup()
+  local nvim_tree_ok, nvim_tree = pcall(require, 'nvim-tree')
+  if not nvim_tree_ok then
+    error('Nvim tree not found')
+    return
+  end
+
+  nvim_tree.setup({
+    disable_netrw = true,
+    hijack_netrw = true,
+    view = {
+      width = 30,
+      side = 'right'
+    }
+  })
+
+  map('n', '<C-e>', ':NvimTreeToggle<CR>', map_opts)
+end
+nvim_tree_setup()
+
 -- Bufferline
 local function bufferline_setup()
   local bufferline_ok, bufferline = pcall(require, 'bufferline')
