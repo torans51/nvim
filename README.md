@@ -1,6 +1,9 @@
 # My nvim configuration
 This repo contains my nvim configuration.
 
+## Requirements
+To use this repo neovim version 0.7 or greater is required. This version are available as snap package in the `edge` release
+
 ## Setup
 
 Check if your system has `gcc` and `g++` installed otherwise
