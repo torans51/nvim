@@ -6,9 +6,6 @@ local opts = { noremap = true, silent = true }
 g.mapleader = ","
 
 -- Normal mode
--- Shortcut to open file tree
-map("n", "<C-e>", ":Explore.<CR>", opts)
-
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
