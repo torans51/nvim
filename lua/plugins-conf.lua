@@ -184,3 +184,17 @@ local function indent_blankline_setup()
 end
 indent_blankline_setup()
 
+-- Toggleterm
+local function toggleterm_setup()
+  local toggleterm_ok, toggleterm = pcall(require, 'toggleterm')
+  if not toggleterm_ok then
+    error('Toggleterm not found')
+    return
+  end
+
+  toggleterm.setup({
+    open_mapping = [[<C-\>]],
+    hide_numbers = true,
+  })
+end
+toggleterm_setup()
