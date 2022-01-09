@@ -136,7 +136,7 @@ local function nvim_tree_setup()
     }
   })
 
-  map('n', '<leader>e', ':NvimTreeToggle<CR>', map_opts)
+  map('n', '<C-e>', ':NvimTreeToggle<CR>', map_opts)
 end
 nvim_tree_setup()
 
