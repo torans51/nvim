@@ -17,11 +17,17 @@ end
 comment_setup()
 
 -- Telescope
+local telescope_maps_prefix = {prefix = '<leader>f', name = 'Find'}
+local telescope_maps = {
+  {mode = 'n', desc = 'File', cmd = '<leader>ff', ocmd = '<cmd>Telescope find_files<CR>'},
+  {mode = 'n', desc = 'Grep in files', cmd = '<leader>fg', ocmd = '<cmd>Telescope live_grep<CR>'},
+  {mode = 'n', desc = 'Open buffer', cmd = '<leader>fb', ocmd = '<cmd>Telescope buffers<CR>'},
+  {mode = 'n', desc = 'Help tags', cmd = '<leader>fh', ocmd = '<cmd>Telescope help_tags<CR>'},
+}
 local function telescope_setup()
-  map('n', '<leader>ff', ':Telescope find_files<CR>', map_opts)
-  map('n', '<leader>fg', ':Telescope live_grep<CR>', map_opts)
-  map('n', '<leader>fb', ':Telescope buffers<CR>', map_opts)
-  map('n', '<leader>fh', ':Telescope help_tags<CR>', map_opts)
+  for _, k in pairs(telescope_maps) do
+    map(k.mode, k.cmd, k.ocmd, map_opts)
+  end
 end
 telescope_setup()
 
@@ -42,6 +48,15 @@ end
 treesitter_setup()
 
 -- LspInstaller
+local lsp_maps_prefix = {prefix = '<leader>g', name = 'Lsp'}
+local lsp_maps = {
+  {mode = 'n', desc = 'GoTo declaration', cmd = "<leader>gD", ocmd = "<cmd>lua vim.lsp.buf.declaration()<CR>"},
+  {mode = 'n', desc = 'GoTo definition', cmd = "<leader>gd", ocmd = "<cmd>lua vim.lsp.buf.definition()<CR>"},
+  {mode = 'n', desc = 'Hover', cmd = "<leader>gK", ocmd = "<cmd>lua vim.lsp.buf.hover()<CR>"},
+  {mode = 'n', desc = 'GoTo implementation', cmd = "<leader>gi", ocmd = "<cmd>lua vim.lsp.buf.implementation()<CR>"},
+  {mode = 'n', desc = 'Signature help', cmd = "<leader>gk", ocmd = "<cmd>lua vim.lsp.buf.signature_help()<CR>"},
+  {mode = 'n', desc = 'References', cmd = "<leader>gr", ocmd = "<cmd>lua vim.lsp.buf.references()<CR>"},
+}
 local function lsp_installer_setup()
   local lsp_installer_ok, lsp_installer = pcall(require, 'nvim-lsp-installer')
   if not lsp_installer_ok then
@@ -53,12 +68,9 @@ local function lsp_installer_setup()
     server:setup({})
   end)
 
-  map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", map_opts)
-  map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", map_opts)
-  map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", map_opts)
-  map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", map_opts)
-  map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", map_opts)
-  map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", map_opts)
+  for _, k in pairs(lsp_maps) do
+    map(k.mode, k.cmd, k.ocmd, map_opts)
+  end
 end
 lsp_installer_setup()
 
@@ -87,10 +99,10 @@ local function cmp_setup()
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = {
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "buffer" },
-      { name = "path" },
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'buffer' },
+      { name = 'path' },
     },
   })
 end
@@ -121,6 +133,16 @@ end
 autopairs_setup()
 
 -- Gitsigns
+local gitsigns_maps_prefix = {prefix = '<leader>h', name = 'Git'}
+local gitsigns_maps = {
+  {mode = 'n', desc = 'Stage hunk', cmd = '<leader>hs', ocmd = '<cmd>Gitsigns stage_hunk<CR>'},
+  {mode = 'n', desc = 'Undo stage hunk', cmd = '<leader>hu', ocmd = '<cmd>Gitsigns undo_stage_hunk<CR>'},
+  {mode = 'n', desc = 'Stage buffer', cmd = '<leader>hS', ocmd = '<cmd>Gitsigns stage_buffer<CR>'},
+  {mode = 'n', desc = 'Reset buffer index', cmd = '<leader>hU', ocmd = '<cmd>Gitsigns reset_buffer_index<CR>'},
+  {mode = 'n', desc = 'Reset hunk', cmd = '<leader>hr', ocmd = '<cmd>Gitsigns reset_hunk<CR>'},
+  {mode = 'n', desc = 'Reset buffer', cmd = '<leader>hR', ocmd = '<cmd>Gitsigns reset_buffer<CR>'},
+  {mode = 'n', desc = 'Preview hunk', cmd = '<leader>hp', ocmd = '<cmd>Gitsigns preview_hunk<CR>'},
+}
 local function gitsigns_setup()
   local gitsigns_ok, gitsigns = pcall(require, 'gitsigns')
   if not gitsigns_ok then
@@ -133,6 +155,9 @@ end
 gitsigns_setup()
 
 -- Nvim tree
+local nvim_tree_maps = {
+  {mode = 'n', desc = 'Explore', cmd = '<leader>e', ocmd = '<cmd>NvimTreeToggle<CR>'},
+}
 local function nvim_tree_setup()
   local nvim_tree_ok, nvim_tree = pcall(require, 'nvim-tree')
   if not nvim_tree_ok then
@@ -149,7 +174,9 @@ local function nvim_tree_setup()
     }
   })
 
-  map('n', '<C-e>', ':NvimTreeToggle<CR>', map_opts)
+  for _, k in pairs(nvim_tree_maps) do
+    map(k.mode, k.cmd, k.ocmd, map_opts)
+  end
 end
 nvim_tree_setup()
 
@@ -188,7 +215,7 @@ local function indent_blankline_setup()
   indent_blankline.setup({
     -- show_current_context = true,
     show_end_of_line = true,
-    space_char_blankline = " ",
+    space_char_blankline = ' ',
   })
 
   opt.list = true
@@ -196,4 +223,37 @@ local function indent_blankline_setup()
   opt.listchars:append('eol:↴')
 end
 indent_blankline_setup()
+
+-- Whichkey
+local function whichkey_setup()
+  local whichkey_ok, whichkey = pcall(require, 'which-key')
+  if not whichkey_ok then
+    notify('Whichkey not found')
+    return
+  end
+
+  whichkey.setup({})
+
+  local keymaps = {}
+  keymaps['<leader>'] = 'Plugins'
+  keymaps[telescope_maps_prefix.prefix] = telescope_maps_prefix.name
+  keymaps[lsp_maps_prefix.prefix] = lsp_maps_prefix.name
+  keymaps[gitsigns_maps_prefix.prefix] = gitsigns_maps_prefix.name
+  keymaps['<leader>w'] = {'<cmd>WhichKey<CR>', 'Whichkey'}
+
+  for _, m in pairs({
+    telescope_maps,
+    lsp_maps,
+    nvim_tree_maps,
+    gitsigns_maps,
+  }) do
+    for _, k in pairs(m) do
+      keymaps[k.cmd] = {k.ocmd, k.desc}
+    end
+  end
+
+
+  whichkey.register(keymaps)
+end
+whichkey_setup()
 

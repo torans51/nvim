@@ -1,5 +1,5 @@
-local g = vim.g
 local cmd = vim.cmd
+local opt = vim.opt
 
 cmd [[
   syntax enable
@@ -32,5 +32,5 @@ local options = {
 }
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+  opt[k] = v
 end
