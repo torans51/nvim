@@ -1,9 +1,9 @@
 local g = vim.g
 local map = vim.api.nvim_set_keymap
 
-local opts = { noremap = true, silent = true }
-
 g.mapleader = ','
+
+local opts = { noremap = true, silent = true }
 
 -- Normal mode
 -- Better window navigation
