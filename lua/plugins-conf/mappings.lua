@@ -23,8 +23,9 @@ map("n", "<leader>gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 map("n", "<leader>gK", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 map("n", "<leader>gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-map("n", "<leader>dk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+map("n", "<leader>gk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 map("n", "<leader>gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+map("n", "<leader>ge", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
 
 -- Gitsigns
 map('n', '<leader>hs', '<cmd>Gitsigns stage_hunk', opts)
