@@ -24,7 +24,7 @@ cmd [[
   augroup end
 ]]
 
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
   return
 end
@@ -32,12 +32,12 @@ end
 return packer.startup(function(use)
   -- basic
   use 'wbthomason/packer.nvim'
-  use "nvim-lua/plenary.nvim"
-  use "numToStr/Comment.nvim"
+  use 'nvim-lua/plenary.nvim'
+  use 'numToStr/Comment.nvim'
 
   -- required
-  use "nvim-telescope/telescope.nvim"
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+  use 'nvim-telescope/telescope.nvim'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -53,7 +53,7 @@ return packer.startup(function(use)
   use 'arcticicestudio/nord-vim'
 
   -- optional
-  use "windwp/nvim-autopairs"
+  use 'windwp/nvim-autopairs'
   use 'lewis6991/gitsigns.nvim'
   use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
@@ -61,7 +61,7 @@ return packer.startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
 
   if PACKER_BOOTSTRAP then
-    require("packer").sync()
+    require('packer').sync()
   end
 end)
 
