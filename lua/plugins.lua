@@ -60,6 +60,7 @@ return packer.startup(function(use)
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
   use 'lukas-reineke/indent-blankline.nvim'
   use 'mg979/vim-visual-multi'
+  use {'goolord/alpha-nvim', requires = 'kyazdani42/nvim-web-devicons'}
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()

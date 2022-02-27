@@ -188,3 +188,13 @@ local function indentblankline_setup()
 end
 indentblankline_setup()
 
+-- Alpha
+local function alpha_setup()
+  local alpha_ok, alpha = pcall(require, 'alpha')
+  if not alpha_ok then
+    notify('Alpha not found')
+  end
+
+  alpha.setup(require('alpha.themes.startify').config)
+end
+alpha_setup()
