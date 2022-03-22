@@ -1,5 +1,6 @@
 require('plugins-conf.mappings')
 
+local cmd = vim.cmd
 local opt = vim.opt
 local notify = vim.notify
 
@@ -97,7 +98,7 @@ local function nightfox_setup()
     return
   end
 
-  nightfox.load('nordfox')
+  cmd("colorscheme nordfox")
 end
 nightfox_setup()
 
