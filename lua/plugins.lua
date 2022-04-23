@@ -56,7 +56,7 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs'
   use 'lewis6991/gitsigns.nvim'
   use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
   use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
   use 'lukas-reineke/indent-blankline.nvim'
   use 'mg979/vim-visual-multi'
