@@ -1,24 +1,36 @@
 local cmd = vim.cmd
 local opt = vim.opt
 
-
+-- most settings are enabled by default in neovim (see official site)
 local options = {
-  clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
-  mouse = "a",                             -- allow the mouse to be used in neovim
-  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
-  timeoutlen = 400,                        -- time to wait for a mapped sequence to complete (in milliseconds)
-  updatetime = 300,                        -- faster completion (4000ms default)
-  ignorecase = true,                       -- ignore case in search patterns
-  smartcase = true,                        -- smart case
-  smartindent = true,                      -- make indenting smarter again
-  splitbelow = true,                       -- force all horizontal splits to go below current window
-  splitright = true,                       -- force all vertical splits to go to the right of current window
-  expandtab = true,                        -- convert tabs to spaces
-  shiftwidth = 2,                          -- the number of spaces inserted for each indentation
-  tabstop = 2,                             -- insert 2 spaces for a tab
-  cursorline = true,                       -- highlight the current line
-  number = true,                           -- set numbered lines
-  relativenumber = true,                   -- set relative numbered lines
+  -- show number on lines
+  number = true,
+  -- show number on lines relative to the cursor position
+  relativenumber = true,
+  -- highlight the current line
+  cursorline = true,
+
+  -- insert 2 spaces for a tab
+  tabstop = 2,
+  -- insert 2 spaces for each step of auto(indent)
+  shiftwidth = 2,
+  -- convert tab to spaces in insert mode
+  expandtab = true,
+  -- make indenting smarter again
+  smartindent = true,
+
+  -- ignore case in search patterns
+  ignorecase = true,
+  -- override the ignore case if search pattern contains uppercase
+  smartcase = true,
+
+  -- allow neovim to access the system clipboard
+  clipboard = 'unnamedplus',
+  -- enable mouse support for all modes
+  mouse = 'a',
+
+  -- time to wati for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 400,
 }
 
 for k, v in pairs(options) do
