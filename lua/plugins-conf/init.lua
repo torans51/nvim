@@ -43,16 +43,18 @@ plugins['cmp'] = {
       return
     end
 
+    opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
     p.setup({
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
-      mapping = {
+      mapping = p.mapping.preset.insert({
         ['<C-Space>'] = p.mapping(p.mapping.complete(), { 'i', 'c' }),
         ['<CR>'] = p.mapping.confirm({ select = true }),
-      },
+      }),
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
