@@ -31,6 +31,11 @@ local options = {
 
   -- time to wati for a mapped sequence to complete (in milliseconds)
   timeoutlen = 400,
+
+  -- force all vertical splits to go below the current window
+  splitbelow = true,
+  -- force all horizontal splits to go right the current window
+  sliptright = true,
 }
 
 for k, v in pairs(options) do
