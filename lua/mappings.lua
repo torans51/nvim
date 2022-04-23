@@ -21,7 +21,16 @@ map('n', '<C-Right>', '<cmd>vertical resize +2<CR>', opts)
 -- Navigate buffers
 map('n', '<TAB>', '<cmd>bnext<CR>', opts)
 map('n', '<S-TAB>', '<cmd>bprevious<CR>', opts)
+-- Close current buffer
 map('n', '<S-Q>', '<cmd>bdelete<CR>', opts)
+-- Close all buggers except the current
+-- % means from 1 up to the highest value
+-- %bdelete close buffer from 1 to the highest value
+-- edit opens a file for editing
+-- # in this context means the `alternate-file`
+-- normal execute a command in normal mode
+-- `" in normal mode jump the the cursor position where we last exited
+map('n', '<S-W>', '<cmd>%bdelete | edit # | normal `"<CR>', opts)
 
 -- Insert --
 -- Remap ESC to jk
