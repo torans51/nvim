@@ -69,6 +69,7 @@ plugins['nightfox'] = {
   require = 'nightfox',
   setup = function (_)
     cmd('colorscheme nordfox')
+    -- cmd('colorscheme dawnfox')
   end
 }
 
@@ -101,11 +102,7 @@ plugins['bufferline'] = {
 plugins['lualine'] = {
   require = 'lualine',
   setup = function (p)
-    p.setup({
-      options = {
-        theme = 'nord'
-      },
-    })
+    p.setup({})
   end
 }
 
@@ -121,13 +118,6 @@ plugins['blankline'] = {
     opt.list = true
     opt.listchars:append('space:⋅')
     opt.listchars:append('eol:↴')
-  end
-}
-
-plugins['alpha'] = {
-  require = 'alpha',
-  setup = function (p)
-    p.setup(require('alpha.themes.startify').config)
   end
 }
 
