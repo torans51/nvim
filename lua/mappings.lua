@@ -1,5 +1,5 @@
 local g = vim.g
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 g.mapleader = ','
 
