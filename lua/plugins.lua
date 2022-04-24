@@ -50,7 +50,6 @@ return packer.startup(function(use)
 
   -- colorscheme
   use 'EdenEast/nightfox.nvim'
-  use 'arcticicestudio/nord-vim'
 
   -- optional
   use 'windwp/nvim-autopairs'
