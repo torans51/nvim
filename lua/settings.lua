@@ -35,7 +35,7 @@ local options = {
   -- force all vertical splits to go below the current window
   splitbelow = true,
   -- force all horizontal splits to go right the current window
-  sliptright = true,
+  splitright = true,
 }
 
 for k, v in pairs(options) do
