@@ -67,7 +67,12 @@ plugins['cmp'] = {
 
 plugins['nightfox'] = {
   require = 'nightfox',
-  setup = function (_)
+  setup = function (p)
+    p.setup({
+      options = {
+        transparent = true,
+      }
+    })
     cmd('colorscheme nordfox')
     -- cmd('colorscheme dawnfox')
   end
