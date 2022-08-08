@@ -9,17 +9,17 @@ local M = {}
 function M.load()
   mappings.load()
 
-  local plugins = {}
+  local conf = {}
 
-  plugins['comment'] = {
+  conf['comment'] = {
     require = 'Comment',
   }
 
-  plugins['telescope'] = {
+  conf['telescope'] = {
     require = 'telescope',
   }
 
-  plugins['treesitter'] = {
+  conf['treesitter'] = {
     require = 'nvim-treesitter.configs',
     setup = function (p)
       p.setup({
@@ -30,16 +30,16 @@ function M.load()
     end
   }
 
-  plugins['lspinstaller'] = {
+  conf['lspinstaller'] = {
     require = 'nvim-lsp-installer',
     setup = function (p)
       p.on_server_ready(function (server)
-        server:setup({})
+        server:setup({}) -- is the same of server.setup(server, {})
       end)
     end
   }
 
-  plugins['cmp'] = {
+  conf['cmp'] = {
     require = 'cmp',
     setup = function (p)
       local luasnip_ok, luasnip = pcall(require, 'luasnip')
@@ -70,28 +70,29 @@ function M.load()
     end
   }
 
-  plugins['nightfox'] = {
+  conf['nightfox'] = {
     require = 'nightfox',
     setup = function (p)
-      p.setup({
-        options = {
-          transparent = true,
-        }
-      })
+      p.setup({})
+    end,
+    after = function ()
       cmd('colorscheme nordfox')
+      -- cmd('colorscheme dayfox')
       -- cmd('colorscheme dawnfox')
+      -- cmd('colorscheme nightfox')
+      -- cmd('colorscheme terafox')
     end
   }
 
-  plugins['autopairs'] = {
+  conf['autopairs'] = {
     require = 'nvim-autopairs',
   }
 
-  plugins['gitsigns'] = {
+  conf['gitsigns'] = {
     require = 'gitsigns',
   }
 
-  plugins['nvimtree'] = {
+  conf['nvimtree'] = {
     require = 'nvim-tree',
     setup = function (p)
       p.setup({
@@ -105,45 +106,29 @@ function M.load()
     end
   }
 
-  plugins['bufferline'] = {
+  conf['bufferline'] = {
     require = 'bufferline',
   }
 
-  plugins['lualine'] = {
+  conf['lualine'] = {
     require = 'lualine',
-    setup = function (p)
-      p.setup({})
-    end
   }
 
-  plugins['blankline'] = {
-    require = 'indent_blankline',
-    setup = function (p)
-      p.setup({
-        -- show_current_context = true,
-        show_end_of_line = true,
-        space_char_blankline = ' ',
-      })
-
-      opt.list = true
-      opt.listchars:append('space:⋅')
-      opt.listchars:append('eol:↴')
-    end
-  }
-
-  for k, plugin in pairs(plugins) do
-    local ok, loaded_plugin = pcall(require, plugin.require)
+  for k, plugin_conf in pairs(conf) do
+    local ok, plugin = pcall(require, plugin_conf.require)
     if not ok then
       notify('the plugin ' .. k .. ' was not found')
       return
     end
 
-    if not plugin.setup then
-      loaded_plugin.setup()
+    if plugin_conf.setup then
+      plugin_conf.setup(plugin)
+    else
+      plugin.setup()
     end
 
-    if plugin.setup then
-      plugin.setup(loaded_plugin)
+    if plugin_conf.after then
+      plugin_conf.after(plugin)
     end
   end
 end

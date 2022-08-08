@@ -3,11 +3,11 @@ local cmd = vim.cmd
 
 local M = {}
 
-function M.load()
-  -- Automatically install packer
+-- Automatically install packer
+local function auto_install_packer()
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
+    fn.system({
       'git',
       'clone',
       '--depth',
@@ -19,16 +19,23 @@ function M.load()
     cmd [[packadd packer.nvim]]
   end
 
-  -- Autocommand to reloads neovim wheneve the plugins.lua file is saved
-  local group = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
-  vim.api.nvim_create_autocmd('BufWritePost', {
-    pattern = { 'plugins.lua' },
-    command = 'source <afile> | PackerSync',
-    group = group
-  })
+  return pcall(require, 'packer')
+end
 
-  local status_ok, packer = pcall(require, 'packer')
+-- Autocommand to reloads neovim wheneve the plugins.lua file is saved
+-- local function on_save()
+--   local group = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
+--   vim.api.nvim_create_autocmd('BufWritePost', {
+--     pattern = { 'plugins.lua' },
+--     command = 'source <afile> | PackerSync',
+--     group = group
+--   })
+-- end
+
+function M.load()
+  local status_ok, packer = auto_install_packer()
   if not status_ok then
+    error('packer was not found')
     return
   end
 
@@ -58,19 +65,15 @@ function M.load()
 
     -- colorscheme
     use 'EdenEast/nightfox.nvim'
-
+    -- icons
+    use 'kyazdani42/nvim-web-devicons'
     -- optional
+    use 'kyazdani42/nvim-tree.lua'
     use 'windwp/nvim-autopairs'
+    use 'akinsho/bufferline.nvim'
+    use 'nvim-lualine/lualine.nvim'
     use 'lewis6991/gitsigns.nvim'
-    use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
-    use {'akinsho/bufferline.nvim', tag = "*", requires = 'kyazdani42/nvim-web-devicons'}
-    use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
-    use 'lukas-reineke/indent-blankline.nvim'
     use 'mg979/vim-visual-multi'
-
-    if PACKER_BOOTSTRAP then
-      require('packer').sync()
-    end
   end)
 end
 

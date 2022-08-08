@@ -11,7 +11,7 @@ function M.load()
     -- show number on lines relative to the cursor position
     relativenumber = true,
     -- highlight the current line
-    cursorline = true,
+    cursorline = false,
 
     -- insert 2 spaces for a tab
     tabstop = 2,
@@ -39,6 +39,11 @@ function M.load()
     splitbelow = true,
     -- force all horizontal splits to go right the current window
     splitright = true,
+
+    -- set lischars to display whitespace and end of line.
+    -- the method 'append' return the listchars object and can be reaassigned to opt
+    list = true,
+    listchars = opt.listchars:append('space:⋅,eol:↴'),
   }
 
   for k, v in pairs(options) do
