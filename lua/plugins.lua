@@ -53,8 +53,12 @@ function M.load()
         require('nvim-treesitter.install').update({ with_sync = true })
       end
     }
+
+    -- LSP packages (mason is used to handle lsp server installation, the order is important)
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
+
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'

@@ -30,12 +30,19 @@ function M.load()
     end
   }
 
-  conf['lspinstaller'] = {
-    require = 'nvim-lsp-installer',
+  conf['mason'] = {
+    require = 'mason',
+  }
+
+  conf['mason-lspconfig'] = {
+    require = 'mason-lspconfig',
     setup = function (p)
-      p.on_server_ready(function (server)
-        server:setup({}) -- is the same of server.setup(server, {})
-      end)
+      p.setup({})
+      p.setup_handlers({
+        function (server_name)
+          require('lspconfig')[server_name].setup({})
+        end
+      })
     end
   }
 
