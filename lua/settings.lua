@@ -33,7 +33,7 @@ function M.load()
     mouse = 'a',
 
     -- time to wati for a mapped sequence to complete (in milliseconds)
-    timeoutlen = 400,
+    timeoutlen = 200,
 
     -- force all vertical splits to go below the current window
     splitbelow = true,

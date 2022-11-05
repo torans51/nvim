@@ -39,6 +39,7 @@ function M.load()
   -- Insert --
   -- Remap ESC to jk
   map('i', 'jk', '<ESC>', opts)
+  map('v', 'jk', '<ESC>', opts)
 
   -- Visual --
   -- Stay in indent mode

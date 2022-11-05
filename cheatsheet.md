@@ -41,3 +41,40 @@
 * search and replace in a visual selection use `v` before search (in cmd something like this appear `:'<, '>s/searchthis/replacethis`)
 * split horizontal/vertical `:sp/:vsp`
 * help for command `:help somecommand` (tab to use the autocomplete)
+
+## Chart
+* `\` default leader key
+* `,` new leader key
+* `h/j/k/l` move left/down/up/right
+* `yy` copy(yank) current line
+* `dd` delete current line
+* `i/a` go insert mode before/after cursor
+* `I/A` go insert mode at the beginning/end of line
+* `o/O` go insert mode and insert line after/before current line
+* `f/t + <char>` move forward and place cursor on/before the char
+* `F/T + <char>` move backward and place cursor on/before the char
+* `,/;` repeat/undo action fo `f/t/F/T`
+* `gg/G` move to the beginning/end of document
+* `w/b` move to the next/previous word
+* `e` move to the end of word
+* `//? + <word>` search word forward/backward
+* `n/N` move to the next/previous occurence of command `//?`
+* `_/$` move to the beginning/end of text in the current line
+* `^/$` move to the beginning/end of text in the current line
+* `0` move to the beginning of line
+* `:<number>` move to the specified number line
+* `ciw` change word
+* `yiw` copy(yank) word
+* `ci(/ca(` change text with/without parenthesis
+* `ci[/ca[` change text with/without parenthesis
+* `ci{/ca{` change text with/without parenthesis
+* `di(/da(` delete text with/without parenthesis
+* `di[/da[` delete text with/without parenthesis
+* `di{/da{` delete text with/without parenthesis
+* `yi(/ya(` copy(yank) text with/without parenthesis
+* `yi[/ya[` copy(yank) text with/without parenthesis
+* `yi{/ya{` copy(yank) text with/without parenthesis
+* `vi(/va(` select in visual mode text with/without parenthesis
+* `vi[/va[` select in visual mode text with/without parenthesis
+* `vi{/va{` select in visual mode text with/without parenthesis
+
