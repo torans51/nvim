@@ -53,7 +53,7 @@
 * `o/O` go insert mode and insert line after/before current line
 * `f/t + <char>` move forward and place cursor on/before the char
 * `F/T + <char>` move backward and place cursor on/before the char
-* `,/;` repeat/undo action fo `f/t/F/T`
+* `;/,` repeat/undo action fo `f/t/F/T`
 * `gg/G` move to the beginning/end of document
 * `w/b` move to the next/previous word
 * `e` move to the end of word
