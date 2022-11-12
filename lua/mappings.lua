@@ -1,9 +1,6 @@
-local g = vim.g
 local map = vim.keymap.set
 
 local M = {}
-
-g.mapleader = ','
 
 function M.load()
 

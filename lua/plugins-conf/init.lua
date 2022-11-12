@@ -103,11 +103,9 @@ function M.load()
     require = 'nvim-tree',
     setup = function (p)
       p.setup({
-        disable_netrw = true,
-        hijack_netrw = true,
         view = {
-          width = 30,
-          side = 'right'
+          adaptive_size = true,
+          side = 'right',
         }
       })
     end

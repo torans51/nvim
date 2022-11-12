@@ -1,9 +1,22 @@
-local cmd = vim.cmd
+local g = vim.g
 local opt = vim.opt
 
 local M = {}
 
 function M.load()
+  local global_options = {
+    -- set leader key
+    mapleader = ',',
+
+    -- disable netrw for nvim tree plugin
+    loaded_netrw = 1,
+    loaded_netrwPlugin = 1,
+  }
+
+  for k, v in pairs(global_options) do
+    g[k] = v
+  end
+
   -- most settings are enabled by default in neovim (see official site)
   local options = {
     -- show number on lines
