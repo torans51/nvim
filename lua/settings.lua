@@ -6,7 +6,7 @@ local M = {}
 function M.load()
   local global_options = {
     -- set leader key
-    mapleader = ',',
+    mapleader = ' ',
 
     -- disable netrw for nvim tree plugin
     loaded_netrw = 1,
