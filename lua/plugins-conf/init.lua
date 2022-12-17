@@ -117,6 +117,13 @@ function M.load()
 
   conf['lualine'] = {
     require = 'lualine',
+    setup = function (p)
+      p.setup({
+        options = {
+          icons_enabled = false,
+        }
+      })
+    end
   }
 
   for k, plugin_conf in pairs(conf) do
