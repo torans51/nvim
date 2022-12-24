@@ -42,10 +42,10 @@ To install treesitter parser types in the neovim command line
 ```
 To install lsp you have 2 alternative run in the neovim command line
 ```
-:LspInstall tsserver rust_analyzer elixirls html cssls
+:MasonInstall tsserver rust_analyzer elixirls html cssls
 ```
 or
 ```
-LspInstallInfo
+:Mason
 ```
 the previous command will open a floating window in wich you can select the language server protocol in which you are intereste in.
