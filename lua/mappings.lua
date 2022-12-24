@@ -33,6 +33,10 @@ function M.load()
   -- `" in normal mode jump the the cursor position where we last exited
   map('n', '<S-W>', '<cmd>%bdelete | edit # | normal `"<CR>', opts)
 
+  -- page Up/Down and centering
+  map('n', '<C-u>', '<C-u>zz', opts)
+  map('n', '<C-d>', '<C-d>zz', opts)
+
   -- Insert --
   -- Remap ESC to jk
   map('i', 'jk', '<ESC>', opts)
