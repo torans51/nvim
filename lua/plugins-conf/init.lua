@@ -126,21 +126,29 @@ function M.load()
     end
   }
 
+  conf['luasnip-latex-snippets'] = {
+    require = 'luasnip-latex-snippets',
+    setup = function (p)
+      p.setup({
+        use_treesitter = true,
+      })
+    end
+  }
+
   for k, plugin_conf in pairs(conf) do
     local ok, plugin = pcall(require, plugin_conf.require)
     if not ok then
       notify('the plugin ' .. k .. ' was not found')
-      return
-    end
-
-    if plugin_conf.setup then
-      plugin_conf.setup(plugin)
     else
-      plugin.setup()
-    end
+      if plugin_conf.setup then
+        plugin_conf.setup(plugin)
+      else
+        plugin.setup()
+      end
 
-    if plugin_conf.after then
-      plugin_conf.after(plugin)
+      if plugin_conf.after then
+        plugin_conf.after(plugin)
+      end
     end
   end
 end

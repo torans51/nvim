@@ -79,6 +79,10 @@ function M.load()
     use 'nvim-lualine/lualine.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'mg979/vim-visual-multi'
+    use {
+      "iurimateus/luasnip-latex-snippets.nvim",
+      requires = { "L3MON4D3/LuaSnip", "nvim-treesitter/nvim-treesitter" },
+    }
   end)
 end
 
