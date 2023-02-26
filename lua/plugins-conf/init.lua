@@ -25,6 +25,19 @@ function M.load()
       p.setup({
         highlight = {
           enable = true,
+        },
+        ensure_installed = {
+          'c',
+          'css',
+          'elixir',
+          'help',
+          'html',
+          'javascript',
+          'latex',
+          'lua',
+          'rust',
+          'typescript',
+          'vim'
         }
       })
     end
@@ -37,7 +50,16 @@ function M.load()
   conf['mason-lspconfig'] = {
     require = 'mason-lspconfig',
     setup = function (p)
-      p.setup({})
+      p.setup({
+        ensure_installed = {
+          'elixirls',
+          'html',
+          'lua_ls',
+          'rust_analyzer',
+          'texlab',
+          'tsserver',
+        }
+      })
       p.setup_handlers({
         function (server_name)
           require('lspconfig')[server_name].setup({})
