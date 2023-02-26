@@ -30,6 +30,8 @@ function M.load()
 
   mappings['lsp'] = {
     setup = function ()
+      map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
       map('n', '<leader>ld', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
       map('n', '<leader>lf', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
       map('n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
