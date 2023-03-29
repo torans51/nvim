@@ -13,6 +13,10 @@ function M.load()
   map('n', '<C-k>', '<C-w>k', opts)
   map('n', '<C-l>', '<C-w>l', opts)
 
+  -- Better page UP/DOWN navigation
+  map('n', '<C-u>', '<C-u>zz', opts)
+  map('n', '<C-d>', '<C-d>zz', opts)
+
   -- Resize with arrows
   map('n', '<C-Up>', '<cmd>resize -2<CR>', opts)
   map('n', '<C-Down>', '<cmd>resize +2<CR>', opts)
