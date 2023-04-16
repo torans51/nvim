@@ -21,7 +21,7 @@ function M.load()
 
   conf['treesitter'] = {
     require = 'nvim-treesitter.configs',
-    setup = function (p)
+    setup = function(p)
       p.setup({
         highlight = {
           enable = true,
@@ -49,7 +49,7 @@ function M.load()
 
   conf['mason-lspconfig'] = {
     require = 'mason-lspconfig',
-    setup = function (p)
+    setup = function(p)
       p.setup({
         ensure_installed = {
           'elixirls',
@@ -61,7 +61,7 @@ function M.load()
         }
       })
       p.setup_handlers({
-        function (server_name)
+        function(server_name)
           require('lspconfig')[server_name].setup({})
         end
       })
@@ -70,7 +70,7 @@ function M.load()
 
   conf['cmp'] = {
     require = 'cmp',
-    setup = function (p)
+    setup = function(p)
       local luasnip_ok, luasnip = pcall(require, 'luasnip')
       if not luasnip_ok then
         notify('Luasnip not found')
@@ -89,22 +89,22 @@ function M.load()
           ['<C-Space>'] = p.mapping(p.mapping.complete(), { 'i', 'c' }),
           ['<CR>'] = p.mapping.confirm({ select = true }),
         }),
-        sources = {
+        sources = p.config.sources({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'buffer' },
           { name = 'path' },
-        },
+        })
       })
     end
   }
 
   conf['nightfox'] = {
     require = 'nightfox',
-    setup = function (p)
+    setup = function(p)
       p.setup({})
     end,
-    after = function ()
+    after = function()
       cmd('colorscheme nordfox')
       -- cmd('colorscheme dayfox')
       -- cmd('colorscheme dawnfox')
@@ -123,7 +123,7 @@ function M.load()
 
   conf['nvimtree'] = {
     require = 'nvim-tree',
-    setup = function (p)
+    setup = function(p)
       p.setup({
         view = {
           adaptive_size = true,
@@ -139,7 +139,7 @@ function M.load()
 
   conf['lualine'] = {
     require = 'lualine',
-    setup = function (p)
+    setup = function(p)
       p.setup({
         options = {
           icons_enabled = false,
@@ -150,7 +150,7 @@ function M.load()
 
   conf['luasnip-latex-snippets'] = {
     require = 'luasnip-latex-snippets',
-    setup = function (p)
+    setup = function(p)
       p.setup({
         use_treesitter = true,
       })
@@ -176,4 +176,3 @@ function M.load()
 end
 
 return M
-
