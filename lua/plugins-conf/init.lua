@@ -45,12 +45,15 @@ function M.load()
 
   conf['mason'] = {
     require = 'mason',
-  }
-
-  conf['mason-lspconfig'] = {
-    require = 'mason-lspconfig',
     setup = function(p)
-      p.setup({
+      p.setup()
+
+      local mason_lspconfig_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
+      if not mason_lspconfig_ok then
+        notify('Mason Lsp Config not found')
+      end
+
+      mason_lspconfig.setup({
         ensure_installed = {
           'elixirls',
           'html',
@@ -60,9 +63,15 @@ function M.load()
           'tsserver',
         }
       })
-      p.setup_handlers({
+
+      local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
+      if not lspconfig_ok then
+        notify('Lspconfig not found')
+      end
+
+      mason_lspconfig.setup_handlers({
         function(server_name)
-          require('lspconfig')[server_name].setup({})
+          lspconfig[server_name].setup({})
         end
       })
     end
