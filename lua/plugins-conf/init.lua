@@ -30,7 +30,6 @@ function M.load()
           'c',
           'css',
           'elixir',
-          'help',
           'html',
           'javascript',
           'latex',
