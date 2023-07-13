@@ -156,6 +156,7 @@ lazy.setup({
   {
     "lewis6991/gitsigns.nvim",
     config = function()
+      require("gitsigns").setup()
       map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", mapopts)
       map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", mapopts)
       map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", mapopts)
