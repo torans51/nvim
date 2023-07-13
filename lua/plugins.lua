@@ -167,9 +167,9 @@ lazy.setup({
     end
   },
   {
-    "kyazdani42/nvim-tree.lua",
+    "nvim-tree/nvim-tree.lua",
     dependencies = {
-      "kyazdani42/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons"
     },
     config = function()
       require("nvim-tree").setup({
@@ -195,7 +195,7 @@ lazy.setup({
   {
     "akinsho/bufferline.nvim",
     dependencies = {
-      "kyazdani42/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons"
     },
     config = function()
       require("bufferline").setup()
@@ -204,7 +204,7 @@ lazy.setup({
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
-      "kyazdani42/nvim-web-devicons"
+      "nvim-tree/nvim-web-devicons"
     },
     config = function()
       require("lualine").setup({
