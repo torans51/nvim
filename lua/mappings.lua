@@ -33,8 +33,9 @@ function M.load()
   map('n', '<C-Right>', '<cmd>vertical resize +2<CR>', opts)
 
   -- Navigate buffers
-  map('n', '<TAB>', '<cmd>bnext<CR>', opts)
-  map('n', '<S-TAB>', '<cmd>bprevious<CR>', opts)
+  -- :b <TAB> to select the buffer
+  map('n', '<TAB>', '<cmd>bNext<CR>', opts)
+  map('n', '<S-TAB>', '<cmd>bPrevious<CR>', opts)
   -- Close current buffer
   map('n', '<S-Q>', '<cmd>bdelete<CR>', opts)
   -- Close all buggers except the current
