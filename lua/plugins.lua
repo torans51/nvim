@@ -167,32 +167,6 @@ lazy.setup({
     end
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require("nvim-tree").setup({
-        view = {
-          adaptive_size = true,
-          side = "right",
-        }
-      })
-
-      map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", mapopts)
-      -- NvimTree notes
-      -- When the NvimTree has the focus the following mappings are available:
-      -- * `a` create a new file in the current folder
-      -- * `d` delete the selected file
-      -- * `r` rename the selected file
-      -- * `<C-v>` open selected file in vertical split
-      -- * `<C-x>` open selected file in horizontal split
-      -- * `I` toggle visibility hidden folders
-      -- * `H` toggle visibiilty dotfiles
-      -- * `R` refresh the tree
-    end
-  },
-  {
     "akinsho/bufferline.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons"

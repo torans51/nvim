@@ -7,6 +7,15 @@ function M.load()
   local opts = { noremap = true, silent = true }
 
   -- Normal mode
+  -- Open native file/folder explorer "Netrw"
+  -- "-" previous folder
+  -- "%" create file
+  -- "d" create folder
+  -- "D" delete file/folder
+  -- "R" rename file/folder
+  -- "gh" show hidden files/folders
+  map("n", "<leader>e", "<cmd>:Lexplore!<CR><cmd>:vertical resize 30<CR>", opts)
+
   -- Better window navigation
   map('n', '<C-h>', '<C-w>h', opts)
   map('n', '<C-j>', '<C-w>j', opts)
