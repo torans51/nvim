@@ -14,7 +14,7 @@ function M.load()
   -- "D" delete file/folder
   -- "R" rename file/folder
   -- "gh" show hidden files/folders
-  map("n", "<leader>e", "<cmd>:Lexplore!<CR><cmd>:vertical resize 30<CR>", opts)
+  map("n", "<leader>e", "<cmd>:Explore<CR>", opts)
 
   -- Better window navigation
   map('n', '<C-h>', '<C-w>h', opts)
