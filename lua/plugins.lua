@@ -68,12 +68,15 @@ lazy.setup({
 
       local mason_lspconfig = require("mason-lspconfig")
       mason_lspconfig.setup({
-        "elixirls",
-        "html",
-        "lua_ls",
-        "rust_analyzer",
-        "texlab",
-        "tsserver",
+        ensure_installed = {
+          "clangd",
+          "elixirls",
+          "html",
+          "lua_ls",
+          "rust_analyzer",
+          "texlab",
+          "tsserver",
+        },
       })
 
       local lspconfig = require("lspconfig")
