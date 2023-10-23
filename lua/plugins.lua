@@ -134,17 +134,6 @@ lazy.setup({
     end
   },
   {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      -- require("nightfox").setup({})
-      cmd("colorscheme nordfox")
-      -- cmd("colorscheme dayfox")
-      -- cmd("colorscheme dawnfox")
-      -- cmd("colorscheme nightfox")
-      -- cmd("colorscheme terafox")
-    end
-  },
-  {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
@@ -195,5 +184,34 @@ lazy.setup({
         use_treesitter = true,
       })
     end
-  }
+  },
+  {
+    "catppuccin/nvim",
+    config = function()
+      require("catppuccin").setup()
+      cmd("colorscheme catppuccin-macchiato")
+    end
+  },
+  -- {
+  --   "rose-pine/neovim",
+  --   config = function()
+  --     require("rose-pine").setup({
+  --       disable_italics = true,
+  --     })
+  --     cmd("colorscheme rose-pine-main")
+  --     cmd("colorscheme rose-pine-moon")
+  --     cmd("colorscheme rose-pine-dawn")
+  --   end
+  -- },
+  -- {
+  --   "EdenEast/nightfox.nvim",
+  --   config = function()
+  --     require("nightfox").setup({})
+  --     cmd("colorscheme nordfox")
+  --     cmd("colorscheme dayfox")
+  --     cmd("colorscheme dawnfox")
+  --     cmd("colorscheme nightfox")
+  --     cmd("colorscheme terafox")
+  --   end
+  -- },
 })

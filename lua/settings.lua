@@ -36,6 +36,8 @@ function M.load()
     ignorecase = true,
     -- override the ignore case if search pattern contains uppercase
     smartcase = true,
+    -- highlight search result
+    hlsearch = false,
 
     -- allow neovim to access the system clipboard
     clipboard = 'unnamedplus',
