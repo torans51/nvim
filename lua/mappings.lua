@@ -34,8 +34,8 @@ function M.load()
 
   -- Navigate buffers
   -- :b <TAB> to select the buffer
-  map('n', '<TAB>', '<cmd>bNext<CR>', opts)
-  map('n', '<S-TAB>', '<cmd>bPrevious<CR>', opts)
+  map('n', '<TAB>', '<cmd>bnext<CR>', opts)
+  map('n', '<S-TAB>', '<cmd>bprevious<CR>', opts)
   -- Close current buffer
   map('n', '<S-Q>', '<cmd>bdelete<CR>', opts)
   -- Close all buggers except the current
