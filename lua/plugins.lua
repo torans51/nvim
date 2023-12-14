@@ -52,7 +52,8 @@ lazy.setup({
           "lua",
           "rust",
           "typescript",
-          "vim"
+          "vim",
+          "ocaml",
         }
       })
     end
@@ -76,6 +77,7 @@ lazy.setup({
           "rust_analyzer",
           "texlab",
           "tsserver",
+          "ocaml-lsp",
         },
       })
 
