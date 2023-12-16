@@ -77,7 +77,7 @@ lazy.setup({
           "rust_analyzer",
           "texlab",
           "tsserver",
-          "ocaml-lsp",
+          "ocamllsp",
         },
       })
 
