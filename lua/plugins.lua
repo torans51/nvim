@@ -98,6 +98,8 @@ lazy.setup({
       map("n", "<leader>lk", "<cmd>lua vim.lsp.buf.signature_help()<CR>", mapopts)
       map("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", mapopts)
       map("n", "<leader>le", "<cmd>lua vim.diagnostic.open_float(0, { scope = \"line\", border = \"single\" })<CR>",
+      map("n", "<C-[>", "<cmd>cnext<CR><cmd>copen<CR>", mapopts),
+      map("n", "<C-]>", "<cmd>cprev<CR><cmd>copen<CR>", mapopts),
         mapopts)
     end
   },
