@@ -190,12 +190,19 @@ lazy.setup({
     end
   },
   {
-    "catppuccin/nvim",
+    "ellisonleao/gruvbox.nvim",
     config = function()
-      require("catppuccin").setup()
-      cmd("colorscheme catppuccin-macchiato")
+      require("gruvbox").setup()
+      cmd("colorscheme gruvbox")
     end
   },
+  -- {
+  --   "catppuccin/nvim",
+  --   config = function()
+  --     require("catppuccin").setup()
+  --     cmd("colorscheme catppuccin-macchiato")
+  --   end
+  -- },
   -- {
   --   "rose-pine/neovim",
   --   config = function()
