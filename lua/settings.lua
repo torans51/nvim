@@ -1,9 +1,10 @@
 local g = vim.g
 local opt = vim.opt
+local api = vim.api
 
 local M = {}
 
-function M.load()
+function M.setup()
   local global_options = {
     -- set leader key
     mapleader = ' ',
@@ -16,12 +17,16 @@ function M.load()
 
   -- most settings are enabled by default in neovim (see official site)
   local options = {
-    -- show number on lines
+    -- show line numbers
     number = true,
     -- show number on lines relative to the cursor position
     relativenumber = true,
     -- highlight the current line
     cursorline = false,
+    -- show the curret mode
+    showmode = false,
+    -- Minimal number of screen lines to keep above and below the cursor
+    scrolloff = 10,
 
     -- insert 2 spaces for a tab
     tabstop = 2,
@@ -31,10 +36,11 @@ function M.load()
     expandtab = true,
     -- make indenting smarter again
     smartindent = true,
+    -- enable break indent
+    breakindent = true,
 
-    -- ignore case in search patterns
+    -- Case-insensitive searching UNLESS \C or capital in search
     ignorecase = true,
-    -- override the ignore case if search pattern contains uppercase
     smartcase = true,
     -- highlight search result
     hlsearch = false,
@@ -45,7 +51,7 @@ function M.load()
     mouse = 'a',
 
     -- time to wati for a mapped sequence to complete (in milliseconds)
-    timeoutlen = 200,
+    timeoutlen = 300,
 
     -- force all vertical splits to go below the current window
     splitbelow = true,
@@ -55,13 +61,21 @@ function M.load()
     -- set lischars to display whitespace and end of line.
     -- the method 'append' return the listchars object and can be reaassigned to opt
     list = true,
-    listchars = opt.listchars:append('space:⋅,eol:↴'),
+    listchars = { tab = '» ', space = '·', trail = '·', nbsp = '␣', eol = '↴' },
   }
 
   for k, v in pairs(options) do
     opt[k] = v
   end
+
+  -- Basic autocommands
+  api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking text',
+    group = api.nvim_create_augroup('highlight-yank', { clear = true }),
+    callback = function ()
+      vim.highlight.on_yank()
+    end
+  })
 end
 
 return M
-

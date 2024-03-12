@@ -1,11 +1,9 @@
-local map = vim.keymap.set
+local utils = require('utils')
+local map = utils.map
 
 local M = {}
 
-function M.load()
-
-  local opts = { noremap = true, silent = true }
-
+function M.setup()
   -- Normal mode
   -- Open native file/folder explorer "Netrw"
   -- "-" previous folder
@@ -14,30 +12,41 @@ function M.load()
   -- "D" delete file/folder
   -- "R" rename file/folder
   -- "gh" show hidden files/folders
-  map("n", "<leader>e", "<cmd>:Explore<CR>", opts)
+  map('n', '<leader>x', '<cmd>:Explore<CR>')
+
+  -- Clear highlight mode on pressing <Esc> in normal mode
+  map('n', '<ESC>', '<cmd>nohlsearch<CR>')
+
+  -- Diagnostic keymaps
+  map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+  map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+  map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+  map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+  map('n', '<C-n>', '<cmd>cnext<CR><cmd>copen<CR>', { desc = 'Move [N]ext quickfix item' })
+  map('n', '<C-p>', '<cmd>cprev<CR><cmd>copen<CR>', { desc = 'Move [P]rev quickfix item' })
 
   -- Better window navigation
-  map('n', '<C-h>', '<C-w>h', opts)
-  map('n', '<C-j>', '<C-w>j', opts)
-  map('n', '<C-k>', '<C-w>k', opts)
-  map('n', '<C-l>', '<C-w>l', opts)
+  map('n', '<C-h>', '<C-w>h', { desc = 'Move focus to left window' })
+  map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to lower window' })
+  map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to upper window' })
+  map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to right window' })
 
   -- Better page UP/DOWN navigation
-  map('n', '<C-u>', '<C-u>zz', opts)
-  map('n', '<C-d>', '<C-d>zz', opts)
+  map('n', '<C-u>', '<C-u>zz')
+  map('n', '<C-d>', '<C-d>zz')
 
   -- Resize with arrows
-  map('n', '<C-Up>', '<cmd>resize -2<CR>', opts)
-  map('n', '<C-Down>', '<cmd>resize +2<CR>', opts)
-  map('n', '<C-Left>', '<cmd>vertical resize -2<CR>', opts)
-  map('n', '<C-Right>', '<cmd>vertical resize +2<CR>', opts)
+  map('n', '<C-Up>', '<cmd>resize -2<CR>')
+  map('n', '<C-Down>', '<cmd>resize +2<CR>')
+  map('n', '<C-Left>', '<cmd>vertical resize -2<CR>')
+  map('n', '<C-Right>', '<cmd>vertical resize +2<CR>')
 
   -- Navigate buffers
   -- :b <TAB> to select the buffer
-  map('n', '<TAB>', '<cmd>bnext<CR>', opts)
-  map('n', '<S-TAB>', '<cmd>bprevious<CR>', opts)
+  map('n', '<TAB>', '<cmd>bnext<CR>')
+  map('n', '<S-TAB>', '<cmd>bprevious<CR>')
   -- Close current buffer
-  map('n', '<S-Q>', '<cmd>bdelete<CR>', opts)
+  map('n', '<S-Q>', '<cmd>bdelete<CR>')
   -- Close all buggers except the current
   -- % means from 1 up to the highest value
   -- %bdelete close buffer from 1 to the highest value
@@ -45,22 +54,21 @@ function M.load()
   -- # in this context means the `alternate-file`
   -- normal execute a command in normal mode
   -- `" in normal mode jump the the cursor position where we last exited
-  map('n', '<S-W>', '<cmd>%bdelete | edit # | normal `"<CR>', opts)
+  map('n', '<S-W>', '<cmd>%bdelete | edit # | normal `"<CR>')
 
   -- page Up/Down and centering
-  map('n', '<C-u>', '<C-u>zz', opts)
-  map('n', '<C-d>', '<C-d>zz', opts)
+  map('n', '<C-u>', '<C-u>zz')
+  map('n', '<C-d>', '<C-d>zz')
 
   -- Insert --
   -- Remap ESC to jk
-  map('i', 'jk', '<ESC>', opts)
-  map('v', 'jk', '<ESC>', opts)
+  map('i', 'jk', '<ESC>')
+  map('v', 'jk', '<ESC>')
 
   -- Visual --
   -- Stay in indent mode
-  map('v', '<', '<gv', opts)
-  map('v', '>', '>gv', opts)
+  map('v', '<', '<gv')
+  map('v', '>', '>gv')
 end
 
 return M
-

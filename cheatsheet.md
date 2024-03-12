@@ -1,5 +1,4 @@
 # Cheat sheet
-
 * edit (or change current dir) `:e fileordir`
 * close `:q` or `ZZ` or `:x` (works if all changes were saved)
 * force close `:q!`

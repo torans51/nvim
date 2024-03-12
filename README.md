@@ -2,7 +2,7 @@
 This repo contains my nvim configuration.
 
 ## Requirements
-To use this repo neovim version 0.7 or greater is required. This version are available as snap package in the `edge` release
+To use this repo neovim version 0.9 or greater is required.
 
 ## Setup
 

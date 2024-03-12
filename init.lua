@@ -1,3 +1,3 @@
-require('settings').load()
-require('mappings').load()
-require("plugins")
+require('settings').setup()
+require('mappings').setup()
+require('plugins').setup()
