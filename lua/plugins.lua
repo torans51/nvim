@@ -86,6 +86,7 @@ function M.setup()
           clangd = {},
           elixirls = {},
           html = {},
+          -- lua_ls = {},
           lua_ls = {
             settings = {
               Lua = {
@@ -106,7 +107,7 @@ function M.setup()
           },
           rust_analyzer = {},
           texlab = {},
-          tsserver = {},
+          ts_ls = {}, -- temporary fix: ts_ls instead of tsserver
           ocamllsp = {},
         }
 
@@ -217,13 +218,20 @@ function M.setup()
       end
     },
     {
-      'ellisonleao/gruvbox.nvim',
+      "folke/tokyonight.nvim",
       priority = 1000,
       config = function()
-        require('gruvbox').setup()
-        vim.cmd('colorscheme gruvbox')
+        vim.cmd('colorscheme tokyonight-night')
       end
-    },
+    }
+    -- {
+    --   'ellisonleao/gruvbox.nvim',
+    --   priority = 1000,
+    --   config = function()
+    --     require('gruvbox').setup()
+    --     vim.cmd('colorscheme gruvbox')
+    --   end
+    -- },
   })
 end
 
