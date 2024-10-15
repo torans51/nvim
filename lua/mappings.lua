@@ -25,11 +25,15 @@ function M.setup()
   map('n', '<C-n>', '<cmd>cnext<CR><cmd>copen<CR>', { desc = 'Move [N]ext quickfix item' })
   map('n', '<C-p>', '<cmd>cprev<CR><cmd>copen<CR>', { desc = 'Move [P]rev quickfix item' })
 
-  -- Better window navigation
+  -- Better window navigation (WARNING: issue with C-l when netrw is focused)
   map('n', '<C-h>', '<C-w>h', { desc = 'Move focus to left window' })
   map('n', '<C-j>', '<C-w>j', { desc = 'Move focus to lower window' })
   map('n', '<C-k>', '<C-w>k', { desc = 'Move focus to upper window' })
   map('n', '<C-l>', '<C-w>l', { desc = 'Move focus to right window' })
+  map('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move focus to left window' })
+  map('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'Move focus to lower window' })
+  map('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'Move focus to upper window' })
+  map('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move focus to right window' })
 
   -- Better page UP/DOWN navigation
   map('n', '<C-u>', '<C-u>zz')
@@ -64,6 +68,7 @@ function M.setup()
   -- Remap ESC to jk
   map('i', 'jk', '<ESC>')
   map('v', 'jk', '<ESC>')
+  map('t', 'jk', '<C-\\><C-n>')
 
   -- Visual --
   -- Stay in indent mode

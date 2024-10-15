@@ -65,7 +65,7 @@ function M.setup()
             'elixir',
             'html',
             'javascript',
-            'latex',
+            'latex', -- require tree-sitter-cli to install
             'lua',
             'rust',
             'typescript',
