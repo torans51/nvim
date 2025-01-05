@@ -8,7 +8,9 @@
 * exit all `:xa`. Exit and save all `:xa`
 * undo/redo `u/<C-r>`
 * copy a line `yy` (similar using selection with `v`)
+* copy from cursor to the end of a line `Y`
 * delete a line `dd` (similar using selection with `v`)
+* delete from cursor to the end of a line `D`
 * move forward/backward by word `w/b`
 * move at beginning/end of line `0/$`
 * move at beginning/end of text line `^/$`
