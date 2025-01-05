@@ -5,7 +5,7 @@ local M = {}
 
 function M.setup()
   local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-  if not vim.loop.fs_stat(lazypath) then
+  if not vim.uv.fs_stat(lazypath) then
     local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
     vim.fn.system({
       'git',
@@ -83,7 +83,11 @@ function M.setup()
       },
       config = function()
         local servers = {
-          clangd = {},
+          clangd = {
+            on_init = function(client)
+              client.server_capabilities.semanticTokensProvider = nil
+            end,
+          },
           elixirls = {},
           html = {},
           -- lua_ls = {},
@@ -111,17 +115,18 @@ function M.setup()
           ocamllsp = {},
         }
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
         require('mason').setup()
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         local lspconfig = require('lspconfig')
         local mason_lspconfig = require('mason-lspconfig')
         mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(servers) })
         mason_lspconfig.setup_handlers({
           function(server_name)
             local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            server.capabilities = vim.tbl_deep_extend(
+              'force', {}, capabilities,
+              server.capabilities or {}
+            )
             lspconfig[server_name].setup(server)
           end
         })
@@ -170,18 +175,6 @@ function M.setup()
             { name = 'buffer' },
             { name = 'path' },
           })
-        })
-      end
-    },
-    {
-      'iurimateus/luasnip-latex-snippets.nvim',
-      dependencies = {
-        'L3MON4D3/LuaSnip',
-        'nvim-treesitter/nvim-treesitter'
-      },
-      config = function()
-        require('luasnip-latex-snippets').setup({
-          use_treesitter = true,
         })
       end
     },
