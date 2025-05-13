@@ -20,7 +20,7 @@ function M.setup()
 
   local lazy = require('lazy')
   lazy.setup({
-    { 'nvim-lua/plenary.nvim', lazy = false },
+    { 'nvim-lua/plenary.nvim' },
     {
       'nvim-telescope/telescope.nvim',
       dependencies = {
@@ -178,8 +178,18 @@ function M.setup()
         })
       end
     },
-    { 'numToStr/Comment.nvim', opts = {} },
-    { 'windwp/nvim-autopairs', opts = {} },
+    {
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup({})
+      end
+    },
+    {
+      'windwp/nvim-autopairs',
+      config = function()
+        require('nvim-autopairs').setup({})
+      end
+    },
     {
       'lewis6991/gitsigns.nvim',
       config = function()
@@ -211,20 +221,12 @@ function M.setup()
       end
     },
     {
-      "folke/tokyonight.nvim",
+      'AlexvZyl/nordic.nvim',
       priority = 1000,
       config = function()
-        vim.cmd('colorscheme tokyonight-night')
+        require('nordic').load()
       end
-    }
-    -- {
-    --   'ellisonleao/gruvbox.nvim',
-    --   priority = 1000,
-    --   config = function()
-    --     require('gruvbox').setup()
-    --     vim.cmd('colorscheme gruvbox')
-    --   end
-    -- },
+    },
   })
 end
 
