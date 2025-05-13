@@ -116,20 +116,8 @@ function M.setup()
         }
 
         require('mason').setup()
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        local lspconfig = require('lspconfig')
         local mason_lspconfig = require('mason-lspconfig')
         mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(servers) })
-        mason_lspconfig.setup_handlers({
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend(
-              'force', {}, capabilities,
-              server.capabilities or {}
-            )
-            lspconfig[server_name].setup(server)
-          end
-        })
 
         map('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
         map('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame' })
