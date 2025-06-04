@@ -2,7 +2,7 @@
 This repo contains my nvim configuration.
 
 ## Requirements
-To use this repo neovim version 0.9 or greater is required.
+To use this repo neovim version 0.11 or greater is required.
 
 ## Setup
 
@@ -12,20 +12,7 @@ $ sudo apt install gcc g++
 ```
 
 Install one particular `nerd-font` and use it in your environment.
-
-In order to do that there are many options but you can follow these steps:
-* clone the repo 
-```sh
-$ git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
-```
-* run the install script
-```sh
-$ ./install.sh
-```
-
-After these procedure all the fonts will be placed in the folder `~/.local/share/fonts/NerdFonts/` and you can delete the `nerd-fonts` repo.
-
-Other options can be found in the `nerd-fonts` repo `README.md`.
+Follow the instructions in the `README` of the repo `https://github.com/ryanoasis/nerd-fonts`
 
 Now clone the repo in the folder `~/.config/nvim/` and open neovim
 ```sh
