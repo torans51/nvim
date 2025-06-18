@@ -33,9 +33,6 @@ function M.setup()
 
         -- Mappings
         local builtin = require('telescope.builtin')
-        map('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-        map('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
-        map('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
         map('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
         map('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
         map('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -71,7 +68,11 @@ function M.setup()
             'typescript',
             'vim',
             'ocaml',
-          }
+          },
+          auto_install = false,
+          sync_install = false,
+          ignore_install = {},
+          modules = {},
         })
       end
     },
@@ -90,21 +91,16 @@ function M.setup()
           },
           elixirls = {},
           html = {},
-          -- lua_ls = {},
           lua_ls = {
             settings = {
               Lua = {
                 runtime = { version = 'LuaJIT' },
+                diagnostics = {
+                  globals = { 'vim' },
+                },
                 workspace = {
                   checkThirdParty = false,
-                  -- Tells lua_ls where to find all the Lua files that you have loaded
-                  -- for your neovim configuration.
-                  -- library = {
-                  --   '${3rd}/luv/library',
-                  --   unpack(vim.api.nvim_get_runtime_file('', true)),
-                  -- },
-                  -- If computer is slow try this instead
-                  library = { vim.env.VIMRUNTIME },
+                  library = vim.api.nvim_get_runtime_file('', true),
                 }
               }
             }
@@ -114,6 +110,10 @@ function M.setup()
           ts_ls = {}, -- temporary fix: ts_ls instead of tsserver
           ocamllsp = {},
         }
+
+        for name, server in pairs(servers) do
+          vim.lsp.config[name] = server
+        end
 
         require('mason').setup()
         local mason_lspconfig = require('mason-lspconfig')
@@ -130,6 +130,7 @@ function M.setup()
         map('n', '<leader>lr', vim.lsp.buf.references, { desc = '[L]sp [R]eferences' })
       end
     },
+    -- Alternative blink.cmp
     {
       'hrsh7th/nvim-cmp',
       event = 'InsertEnter',
@@ -186,7 +187,7 @@ function M.setup()
 
         local builtin = gitsigns
         map('n', '<leader>hs', builtin.stage_hunk)
-        map('n', '<leader>hu', builtin.undo_stage_hunk)
+        map('n', '<leader>hu', builtin.stage_hunk)
         map('n', '<leader>hS', builtin.stage_buffer)
         map('n', '<leader>hU', builtin.reset_buffer_index)
         map('n', '<leader>hr', builtin.reset_hunk)

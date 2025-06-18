@@ -42,6 +42,7 @@
 * search and replace in a visual selection use `v` before search (in cmd something like this appear `:'<, '>s/searchthis/replacethis`)
 * split horizontal/vertical `:sp/:vsp`
 * help for command `:help somecommand` (tab to use the autocomplete)
+* list all keybindings `:nmap` or `:vmap` or `:imap`
 
 ## Chart
 * `\` default leader key

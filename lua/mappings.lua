@@ -1,5 +1,8 @@
-local utils = require('utils')
-local map = utils.map
+local function map(mode, key, cmd, opts)
+  local base_opts = { noremap = true, silent = true }
+  local new_opts = vim.tbl_extend('keep', opts or {}, base_opts)
+  vim.keymap.set(mode, key, cmd, new_opts)
+end
 
 local M = {}
 

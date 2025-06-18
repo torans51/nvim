@@ -1,20 +1,17 @@
-local g = vim.g
-local opt = vim.opt
-local api = vim.api
-
 local M = {}
 
 function M.setup()
+  -- Global options
   local global_options = {
     -- set leader key
     mapleader = ' ',
     maplocalleader = ' ',
   }
-
   for k, v in pairs(global_options) do
-    g[k] = v
+    vim.g[k] = v
   end
 
+  -- Local options
   -- most settings are enabled by default in neovim (see official site)
   local options = {
     -- show line numbers
@@ -22,11 +19,9 @@ function M.setup()
     -- show number on lines relative to the cursor position
     relativenumber = true,
     -- highlight the current line
-    cursorline = false,
+    cursorline = true,
     -- show the curret mode
     showmode = false,
-    -- Minimal number of screen lines to keep above and below the cursor
-    scrolloff = 10,
 
     -- insert 2 spaces for a tab
     tabstop = 2,
@@ -63,16 +58,15 @@ function M.setup()
     list = true,
     listchars = { tab = '» ', space = '·', trail = '·', nbsp = '␣', eol = '↴' },
   }
-
   for k, v in pairs(options) do
-    opt[k] = v
+    vim.opt[k] = v
   end
 
   -- Basic autocommands
-  api.nvim_create_autocmd('TextYankPost', {
+  vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking text',
-    group = api.nvim_create_augroup('highlight-yank', { clear = true }),
-    callback = function ()
+    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+    callback = function()
       vim.highlight.on_yank()
     end
   })
