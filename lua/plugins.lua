@@ -53,6 +53,7 @@ function M.setup()
       'nvim-treesitter/nvim-treesitter',
       build = ':TSUpdate',
       config = function()
+        ---@diagnostic disable-next-line: missing-fields
         require('nvim-treesitter.configs').setup({
           highlight = { enable = true },
           indent = { enable = true },
@@ -69,10 +70,6 @@ function M.setup()
             'vim',
             'ocaml',
           },
-          auto_install = false,
-          sync_install = false,
-          ignore_install = {},
-          modules = {},
         })
       end
     },
@@ -83,41 +80,52 @@ function M.setup()
         'williamboman/mason-lspconfig.nvim',
       },
       config = function()
-        local servers = {
-          clangd = {
-            on_init = function(client)
-              client.server_capabilities.semanticTokensProvider = nil
-            end,
-          },
-          elixirls = {},
-          html = {},
-          lua_ls = {
-            settings = {
-              Lua = {
-                runtime = { version = 'LuaJIT' },
-                diagnostics = {
-                  globals = { 'vim' },
-                },
-                workspace = {
-                  checkThirdParty = false,
-                  library = vim.api.nvim_get_runtime_file('', true),
-                }
+        -- vim.lsp.config['clangd'] = {
+        --   on_init = function(client)
+        --     client.server_capabilities.semanticTokensProvider = nil
+        --   end
+        -- }
+        local clangd_on_init = vim.lsp.config.clangd.on_init
+        vim.lsp.config('clangd', {
+          on_init = function(client, init_result)
+            if clangd_on_init then
+              clangd_on_init(client, init_result)
+            end
+            client.server_capabilities.semanticTokensProvider = nil
+          end
+        })
+
+        vim.lsp.config('lua_ls', {
+          settings = {
+            Lua = {
+              runtime = { version = 'LuaJIT' },
+              diagnostics = {
+                globals = { 'vim' },
+              },
+              workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file('', true),
               }
             }
-          },
-          rust_analyzer = {},
-          texlab = {},
-          ts_ls = {}, -- temporary fix: ts_ls instead of tsserver
-          ocamllsp = {},
-        }
+          }
+        })
 
-        for name, server in pairs(servers) do
-          vim.lsp.config[name] = server
-        end
-
-        require('mason').setup()
-        local mason_lspconfig = require('mason-lspconfig')
-        mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(servers) })
+        -- Automatically call vim.lsp.config and vim.lsp.enable with defaults specified in nvim-lspconfig
+        require('mason').setup({})
+        ---@diagnostic disable-next-line: missing-fields
+        require('mason-lspconfig').setup({
+          ensure_installed = {
+            'clangd',
+            'elixirls',
+            'html',
+            'lua_ls',
+            'rust_analyzer',
+            'texlab',
+            'ts_ls',
+            'ocamllsp',
+            'gopls',
+          }
+        })
 
         map('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
         map('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame' })

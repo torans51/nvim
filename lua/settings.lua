@@ -33,6 +33,8 @@ function M.setup()
     smartindent = true,
     -- enable break indent
     breakindent = true,
+    -- wrap line
+    wrap = false,
 
     -- Case-insensitive searching UNLESS \C or capital in search
     ignorecase = true,

@@ -1,11 +1,9 @@
 local M = {}
 
-local base_opts = { noremap = true, silent = true }
-
-M.map = function (mode, key, cmd, opts)
-  local default_opts = opts or {}
-  local newopts = vim.tbl_extend('keep', base_opts, default_opts)
-  vim.keymap.set(mode, key, cmd, newopts)
+M.map = function(mode, key, cmd, custom_opts)
+  local default_opts = { noremap = true, silent = true }
+  local opts = vim.tbl_extend('force', default_opts, custom_opts or {})
+  vim.keymap.set(mode, key, cmd, opts)
 end
 
 return M

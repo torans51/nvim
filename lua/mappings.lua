@@ -1,8 +1,5 @@
-local function map(mode, key, cmd, opts)
-  local base_opts = { noremap = true, silent = true }
-  local new_opts = vim.tbl_extend('keep', opts or {}, base_opts)
-  vim.keymap.set(mode, key, cmd, new_opts)
-end
+local utils = require('utils')
+local map = utils.map
 
 local M = {}
 
@@ -21,8 +18,12 @@ function M.setup()
   map('n', '<ESC>', '<cmd>nohlsearch<CR>')
 
   -- Diagnostic keymaps
-  map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-  map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+  map('n', '[d', function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end, { desc = 'Go to previous [D]iagnostic message' })
+  map('n', ']d', function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, { desc = 'Go to next [D]iagnostic message' })
   map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
   map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
   map('n', '<C-n>', '<cmd>cnext<CR><cmd>copen<CR>', { desc = 'Move [N]ext quickfix item' })
