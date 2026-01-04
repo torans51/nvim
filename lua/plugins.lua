@@ -165,6 +165,13 @@ function M.setup()
             ['<C-y>'] = cmp.mapping.confirm { select = true },
             ['<C-n>'] = cmp.mapping.select_next_item(),
             ['<C-p>'] = cmp.mapping.select_prev_item(),
+            ['<Tab>'] = cmp.mapping(function (fallback)
+              if luasnip.locally_jumpable(1) then
+                luasnip.jump(1)
+              else
+                fallback()
+              end
+            end)
           }),
           sources = cmp.config.sources({
             { name = 'nvim_lsp' },
@@ -173,6 +180,61 @@ function M.setup()
             { name = 'path' },
           })
         })
+
+        local s = luasnip.snippet
+        local t = luasnip.text_node
+        local i = luasnip.insert_node
+
+        luasnip.config.set_config({
+          enable_autosnippets = true,
+        })
+        luasnip.add_snippets("typ", {
+          s({ trig = "mk", wordTrig = true, snippetType = "autosnippet" }, {
+            t("$"), i(0), t("$"),
+          }),
+          s({ trig = "dm", wordTrig = true, snippetType = "autosnippet" }, {
+            t("$ "), i(0), t(" $"),
+          }),
+        })
+        luasnip.add_snippets("tex", {
+          s({ trig = "mathe", wordTrig = true, snippetType = "autosnippet" }, {
+            t({ "\\begin{equation}", "  " }),
+            i(1),
+            t({ "", "\\end{equation}" }),
+          }),
+          s({ trig = "matha", wordTrig = true, snippetType = "autosnippet" }, {
+            t({ "\\begin{align}", "  " }),
+            i(1),
+            t("&"),
+            i(2),
+            t(" \\\\"),
+            t({ "", "\\end{align}" }),
+          }),
+          s({ trig = "mk", wordTrig = true, snippetType = "autosnippet" }, {
+            t("$"), i(0), t("$"),
+          }),
+          s({ trig = "//", wordTrig = true, snippetType = "autosnippet" }, {
+            t("frac{"), i(1), t("}{"), i(2), t("}"),
+          })
+        })
+      end
+    },
+    {
+      "jake-stewart/multicursor.nvim",
+      branch = "1.0",
+      config = function()
+        local mc = require('multicursor-nvim')
+        mc.setup()
+        vim.keymap.set({"n"}, "<C-n>", function() mc.matchAddCursor(1) end )
+        mc.addKeymapLayer(function(layerSet)
+          layerSet("n", "<Esc>", function ()
+            if not mc.cursorsEnabled() then
+              mc.enableCursors()
+            else
+              mc.clearCursors()
+            end
+          end)
+        end)
       end
     },
     {
